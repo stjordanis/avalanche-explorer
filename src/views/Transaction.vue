@@ -65,7 +65,7 @@
                     <utxo-row class="io_item" v-for="(output, i) in outputs" :key="i" :utxo="output" type="output"></utxo-row>
                 </div>
                 <div v-else>
-                    <p>No output utxos found for this transaction.</p>
+                    <p>No output UTXOs found for this transaction.</p>
                 </div>
             </div>
 
