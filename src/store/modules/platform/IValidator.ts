@@ -2,11 +2,17 @@ export interface IValidator {
     nodeID: string              // validator node id
     startTime: Date
     endTime: Date
+    
+    
     address?: string            // Primary Network only. payout address (not the address who staked) 
+    
     stakeAmount?: number        // Primary Network only
     totalStakeAmount?: number   // Primary Network only. sum of validator and delegator stake amounts
     delegators?: IValidator[]   // Primary Network only. a validator contains delegators if they have the same node id
+    
     weight?: number             // non-Primary Network only. analogous to stakeAmount
+    
+    
     rank?: number               // based on stake or weight
     elapsed?: number            // how much of the staking period has elasped (%)
 }
@@ -35,7 +41,7 @@ export interface IValidator_New {
     startTime:          Date
     endTime:            Date    
     // Primary Network Properties
-    rewardOwner?:       IRewardOwner
+    rewardOwner?:       IRewardOwner    // Primary Network only. payout address (not the address who staked) 
     potentialReward?:   number
     stakeAmount?:       number
     uptime?:            number      // percentage 

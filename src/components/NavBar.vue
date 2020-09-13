@@ -1,39 +1,24 @@
 <template>
-    <v-app-bar
-        div="navbar"
-        app
-        dark
-        flat
-        dense
-        :height="100"
-        :style="{backgroundColor: navColor}"
-    >
+    <v-app-bar div="navbar" app dark flat dense :height="100" :style="{backgroundColor: navColor}">
         <div class="logo">
             <router-link to="/">
                 <img style="width: 200px" src="@/assets/explorer_logo.png" />
-                <h1><span class="hide">Avalanche Explorer</span><span class="subnet">AVAX (Private)</span></h1>
             </router-link>
         </div>
         <v-spacer class="spacer_mid"></v-spacer>
+        <div class="row">
+            <search-bar
+                class="search_bar"
+                placeholder="Search by Address / TxId / Asset"
+                @search="onsearch"
+            ></search-bar>
+        </div>
+        <v-spacer class="spacer_mid"></v-spacer>
         <div class="rightside">
-            <div class="row" style="display: flex">
-                <div class="routes">
-                    <router-link to="/">Home</router-link>
-                    <router-link to="/subnets">Subnets</router-link>
-                    <router-link to="/validators">Validators</router-link>
-                    <router-link to="/assets">Assets</router-link>
-                    <!-- <router-link to="/addresses">Addresses</router-link> -->
-                    <router-link to="/blockchains">Blockchains</router-link>
-                    <a href="https://cchain.explorer.avax.network/">C-Chain</a>
-                    <router-link to="/resources">Resources</router-link>
-                </div>
-            </div>
-            <div class="row">
-                <search-bar
-                    class="search_bar"
-                    placeholder="Search by Address / TxId / Asset"
-                    @search="onsearch"
-                ></search-bar>
+            <div class="logo">
+                <h1>
+                    <span class="subnet">AVAX (Private)</span>
+                </h1>
             </div>
         </div>
     </v-app-bar>
@@ -111,11 +96,11 @@ export default Vue.extend({
             height: 1px;
             display: inline-block;
             overflow: hidden;
-            position: absolute!important;
-            border: 0!important;
-            padding: 0!important;
-            margin: 0!important;
-            clip: rect(1px,1px,1px,1px);
+            position: absolute !important;
+            border: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            clip: rect(1px, 1px, 1px, 1px);
         }
 
         .subnet {
@@ -160,7 +145,7 @@ export default Vue.extend({
     &.router-link-exact-active {
         color: main.$primary-color !important;
     }
-    
+
     &:hover {
         opacity: 0.7;
         text-decoration: none;
@@ -171,37 +156,36 @@ export default Vue.extend({
     }
 }
 
-@include main.device_s {    
+@include main.device_s {
     .logo {
         height: 100%;
         padding: 15px 0px 15px 6px;
         display: flex;
         flex-direction: column;
 
+        a {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100%;
+        }
 
-    a {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        height: 100%;
-    }
+        h1 {
+            padding-left: 161px;
+            height: 12px;
+            .subnet {
+                font-size: 12px;
+                color: main.$primary-color;
+                padding-top: 9px;
+                padding-bottom: 0;
+                display: block;
+            }
+        }
 
-    h1 {
-        padding-left: 161px;
-        height: 12px;
-        .subnet {
-            font-size: 12px;
-            color: main.$primary-color;
-            padding-top: 9px;
-            padding-bottom: 0;
-            display: block;
+        img {
+            max-height: calc(100% - 15px);
         }
     }
-
-    img {
-        max-height: calc(100% - 15px);
-    }
-}
 
     .rightside {
         width: 100%;
