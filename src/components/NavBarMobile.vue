@@ -4,8 +4,8 @@
         <div class="inner">
             <div class="logo">
                 <router-link to="/">
-                    <img style="height: 24px" src="@/assets/explorer_logo.png" />
-                    <h1><span class="hide">Avalanche Explorer</span><span class="subnet">Everest</span></h1>
+                    <img style="height: 24px" src="@/assets/explorer_logo_white.png" />
+                    <h1><span class="hide">Avalanche Explorer</span></h1>
                 </router-link>
             </div>
             <!-- <div>
@@ -89,7 +89,7 @@ export default class NavbarMobile extends Vue {
 .navbar_mobile {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
-    background-color: main.$white;
+    background-color: main.$red;
 
     > .v-toolbar__content {
         padding: 0;

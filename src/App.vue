@@ -68,7 +68,7 @@ export default Vue.extend({
 <style scoped lang="scss">
 @use"main";
 .v-application {
-    background-color: main.$gray-xlight !important;
+    background-color: main.$red !important;
 }
 
 .bg {

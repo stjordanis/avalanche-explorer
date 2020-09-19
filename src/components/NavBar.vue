@@ -10,8 +10,8 @@
     >
         <div class="logo">
             <router-link to="/">
-                <img style="width: 200px" src="@/assets/explorer_logo.png" />
-                <h1><span class="hide">Avalanche Explorer</span><span class="subnet">Everest</span></h1>
+                <img style="width: 200px" src="@/assets/explorer_logo_white.png" />
+                <h1><span class="hide">Avalanche Explorer</span></h1>
             </router-link>
         </div>
         <v-spacer class="spacer_mid"></v-spacer>
@@ -62,7 +62,7 @@ export default Vue.extend({
             return (this.$router.currentRoute.name === "Home") ? false : true;
         },
         navColor() {
-            return "#fff";
+            return "#e84142";
         }
     }
 });
