@@ -6,8 +6,8 @@
             <router-view class="router_view"></router-view>
         </v-content>
         <!-- <responsive-guidelines></responsive-guidelines> -->
-        <Footer class="footer"></Footer>
-        <notifications></notifications>
+        <!-- <Footer class="footer"></Footer> -->
+        <!-- <notifications></notifications> -->
     </v-app>
 </template>
 
@@ -26,8 +26,8 @@ export default Vue.extend({
         NavBar,
         NavBarMobile,
         // ResponsiveGuidelines,
-        Footer,
-        Notifications
+        // Footer,
+        // Notifications
     },
     data: () => ({}),
     created(): void {

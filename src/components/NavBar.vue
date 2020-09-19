@@ -18,34 +18,33 @@
         <div class="rightside">
             <div class="row" style="display: flex">
                 <div class="routes">
-                    <router-link to="/">Home</router-link>
-                    <router-link to="/subnets">Subnets</router-link>
-                    <router-link to="/validators">Validators</router-link>
-                    <router-link to="/assets">Assets</router-link>
-                    <!-- <router-link to="/addresses">Addresses</router-link> -->
-                    <router-link to="/blockchains">Blockchains</router-link>
-                    <a href="https://cchain.explorer.avax.network/">C-Chain</a>
-                    <router-link to="/resources">Resources</router-link>
+                    <!-- <router-link to="/">Home</router-link> -->
+                    <!-- <router-link to="/subnets">Subnets</router-link> -->
+                    <!-- <router-link to="/validators">Validators</router-link> -->
+                    <!-- <router-link to="/assets">Assets</router-link> -->
+                    <!-- <router-link to="/blockchains">Blockchains</router-link> -->
+                    <!-- <a href="https://cchain.explorer.avax.network/">C-Chain</a> -->
+                    <!-- <router-link to="/resources">Resources</router-link> -->
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <search-bar
                     class="search_bar"
                     placeholder="Search by Address / TxId / Asset"
                     @search="onsearch"
                 ></search-bar>
-            </div>
+            </div> -->
         </div>
     </v-app-bar>
 </template>
 
 <script>
 import Vue from "vue";
-import SearchBar from "@/components/misc/SearchBar/SearchBar";
+// import SearchBar from "@/components/misc/SearchBar/SearchBar";
 
 export default Vue.extend({
     components: {
-        SearchBar
+        // SearchBar
     },
     methods: {
         onsearch(val) {

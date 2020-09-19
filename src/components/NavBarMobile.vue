@@ -8,17 +8,17 @@
                     <h1><span class="hide">Avalanche Explorer</span><span class="subnet">Everest</span></h1>
                 </router-link>
             </div>
-            <div>
+            <!-- <div>
                 <v-btn @click="isSearch = !isSearch" icon class="search_btn">
                     <fa icon="search"></fa>
                 </v-btn>
                 <v-btn @click="isDrawer = !isDrawer" icon>
                     <fa icon="bars"></fa>
                 </v-btn>
-            </div>
+            </div> -->
         </div>
         <!--   MOBILE MENU     -->
-        <v-navigation-drawer v-model="isDrawer" fixed style="z-index: 999;">
+        <!-- <v-navigation-drawer v-model="isDrawer" fixed style="z-index: 999;">
             <v-list dense nav>
                 <v-list-item>
                     <div class="drawer_img_container">
@@ -30,15 +30,14 @@
                     <v-list-item to="/subnets">Subnets</v-list-item>
                     <v-list-item to="/validators">Validators</v-list-item>
                     <v-list-item to="/assets">Assets</v-list-item>
-                    <!-- <v-list-item to="/addresses">Addresses</v-list-item> -->
                     <v-list-item to="/blockchains">Blockchains</v-list-item>
                     <v-list-item href="https://cchain.explorer.avax.network/">C-Chain</v-list-item>
                     <v-list-item to="/resources">Resources</v-list-item>
                 </template>
             </v-list>
-        </v-navigation-drawer>
+        </v-navigation-drawer> -->
         <!--   SEARCH     -->
-        <v-dialog v-model="isSearch" fullscreen hide-overlay transition="dialog-bottom-transition">
+        <!-- <v-dialog v-model="isSearch" fullscreen hide-overlay transition="dialog-bottom-transition">
             <v-card>
                 <div class="search_container" v-if="isSearch">
                     <search-bar-mobile
@@ -49,17 +48,17 @@
                     ></search-bar-mobile>
                 </div>
             </v-card>
-        </v-dialog>
+        </v-dialog> -->
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import SearchBarMobile from "@/components/misc/SearchBar/SearchBarMobile.vue";
+// import SearchBarMobile from "@/components/misc/SearchBar/SearchBarMobile.vue";
 
 @Component({
     components: {
-        SearchBarMobile
+        // SearchBarMobile
     }
 })
 export default class NavbarMobile extends Vue {

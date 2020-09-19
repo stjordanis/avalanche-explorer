@@ -1,19 +1,19 @@
 <template>
     <div class="home">
-        <top-info class="card"></top-info>
-        <recent-transactions class="card recent_tx"></recent-transactions>
+        <div class="everest">
+            <img src="@/assets/og-image-avalanche.png" alt="Avalanche Logo">
+            <h3>Avalanche is Coming</h3>
+            <p class="description">Please come back on Monday, September 21st for the launch of the Avalanche Mainnet.</p>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TopInfo from "@/components/Home/TopInfo/TopInfo.vue";
-import RecentTransactions from "@/components/Home/RecentTransactions.vue";
+
 
 @Component({
     components: {
-        TopInfo,
-        RecentTransactions
     }
 })
 export default class Home extends Vue {}
@@ -31,21 +31,45 @@ export default class Home extends Vue {}
     justify-content: flex-start;
 }
 
-.recent_tx {
-    width: 100%;
-    margin-top: 30px;
-    box-sizing: border-box;
+.everest {
+    border: 0;
+    width: 70%;
+    text-align: center;
+    
+    img {
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        padding-top: 22px;
+    }
+
+    h3 {
+        margin-top: 1.4em;
+        margin-bottom: 1em;
+        font-size: 64px;
+        line-height: 1.16em;
+        color: main.$blue;
+        font-weight: 300;
+    }
+
+    .description {
+        font-size: 20px;
+        line-height: 1.2em;
+        max-width: 900px;
+        margin-bottom: .5em;
+        margin-left: auto;
+        margin-right: auto;
+        color: main.$primary-color;
+        font-weight: 400;
+    }
 }
 
-.tables {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    grid-gap: 30px;
-}
-
-@include main.device-xs {
-    .recent_tx {
-        margin-top: 0;
+@include main.device_xs {
+    .everest {
+        h3 {
+            font-size: 36px;
+        }
     }
 }
 </style>
