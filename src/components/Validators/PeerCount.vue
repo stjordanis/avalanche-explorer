@@ -42,8 +42,20 @@ export default class PeerCount extends Vue {
                 datasets: [],
             },
             options: {
+                aspectRatio: 1.33,
+                maintainAspectRatio: true,
+                responsive: true,
+                tooltips: {
+                    mode: 'index',
+                    enabled: true,
+                    intersect: false,
+                },
                 legend: {
                     display: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true,
                 },
             },
         })
@@ -59,7 +71,7 @@ export default class PeerCount extends Vue {
                         .scale(['#4c2e56', '#ffe6e6'])
                         .colors(this.data.length),
                     data: this.data.map((v) => v[this.metric]) as number[],
-                    barThickness: 30,
+                    barThickness: 20,
                 },
             ]
         }

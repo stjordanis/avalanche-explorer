@@ -12,9 +12,11 @@
 <script lang="ts">
 import 'reflect-metadata'
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
-import Chart from 'chart.js'
+import Chart, { ChartDataSets } from 'chart.js'
 import chroma from 'chroma-js'
 import { IVersion } from './Metadata.vue'
+import Big from 'big.js'
+import { toAVAX } from '@/helper'
 
 @Component({
     components: {},
@@ -40,15 +42,11 @@ export default class PeerStake extends Vue {
                 labels: [],
                 datasets: [],
             },
-            options: {
-                legend: {
-                    display: false,
-                },
-            },
         })
     }
 
     draw() {
+        const parent = this
         // bind data to chart
         if (this.chart && this.data) {
             this.chart.data.labels = this.data.map((v) => v.version)
@@ -60,8 +58,57 @@ export default class PeerStake extends Vue {
                     data: this.data.map((v) => v[this.metric]) as number[],
                 },
             ]
+            this.chart.options = {
+                legend: {
+                    display: false,
+                },
+                tooltips: {
+                    callbacks: {
+                        title: function (tooltipItem, data) {
+                            const label = (data['labels'] as string[])[
+                                tooltipItem[0]['index'] as number
+                            ]
+                            return `AvalancheGo ${label}`
+                        },
+                        label: function (tooltipItem, data) {
+                            const dataset = (data[
+                                'datasets'
+                            ] as Chart.ChartDataSets[])[0] as ChartDataSets
+
+                            const datum = (dataset['data'] as number[])[
+                                tooltipItem['index'] as number
+                            ]
+
+                            if (parent.totalStake === 0) {
+                                return '-%'
+                            }
+                            const percent = Math.round(
+                                (datum / parent.totalStake) * 100
+                            )
+                            return percent + '%'
+                        },
+                        afterLabel: function (tooltipItem, data) {
+                            const datasets = (data[
+                                'datasets'
+                            ] as Chart.ChartDataSets[])[0] as ChartDataSets
+
+                            return `(${((datasets['data'] as number[])[
+                                tooltipItem['index'] as number
+                            ] as number).toLocaleString()} AVAX)`
+                        },
+                    },
+                },
+            }
             this.chart.update()
         }
+    }
+
+    get totalStake(): number {
+        const totalNAVAXStaked = this.$store.getters[
+            'Platform/totalStake'
+        ] as Big
+        const totalAVAXStaked = toAVAX(parseFloat(totalNAVAXStaked.toString()))
+        return totalAVAXStaked
     }
 }
 </script>

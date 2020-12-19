@@ -31,7 +31,7 @@
                 </div>
                 <peer-count
                     v-show="!loading"
-                    :data="versions"
+                    :data="versionsCount"
                     :metric="'nodeCount'"
                 ></peer-count>
             </div>
@@ -65,10 +65,10 @@ export default class Metadata extends Vue {
     loading = false
 
     created() {
-        this.getData()
+        this.getVersions()
     }
 
-    async getData(): Promise<void> {
+    async getVersions(): Promise<void> {
         this.loading = true
 
         const url = 'https://explorerapi.avax.network/validators'
@@ -116,6 +116,12 @@ export default class Metadata extends Vue {
 
         this.versions = peerInfo
         this.loading = false
+    }
+
+    get versionsCount(): null | IVersion[] {
+        return this.versions
+            ? this.versions.filter((v) => v.version !== 'offline')
+            : null
     }
 }
 </script>
