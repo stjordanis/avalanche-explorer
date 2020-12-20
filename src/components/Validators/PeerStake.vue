@@ -46,6 +46,7 @@ export default class PeerStake extends Vue {
     }
 
     draw() {
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         const parent = this
         // bind data to chart
         if (this.chart && this.data) {

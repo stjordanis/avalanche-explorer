@@ -16,7 +16,7 @@ export const DEFAULT_NETWORK_NAME =
 // Mainnet
 const networkName = process.env.VUE_APP_NETWORKNAME
 const explorerFEUrl = process.env.VUE_APP_EXPLORER_FE_URL || ''
-const orteliusURL = process.env.VUE_APP_ORTELIUS_URL || ''
+export const orteliusURL = process.env.VUE_APP_ORTELIUS_URL || ''
 const avalancheJSProtocol = process.env.VUE_APP_AVALANCHE_JS_PROTOCOL || ''
 const avalancheJSIP = process.env.VUE_APP_AVALANCHE_JS_IP || ''
 const avalancheJSPort = parseInt(process.env.VUE_APP_AVALANCHE_JS_PORT || '443')
