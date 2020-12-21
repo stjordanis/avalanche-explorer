@@ -17,6 +17,7 @@ import chroma from 'chroma-js'
 import { IVersion } from './Metadata.vue'
 import Big from 'big.js'
 import { toAVAX } from '@/helper'
+import { DEFAULT_NETWORK_ID } from '@/store/modules/network/network'
 
 @Component({
     components: {},
@@ -48,13 +49,18 @@ export default class PeerStake extends Vue {
     draw() {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const parent = this
+
+        const colorStops = DEFAULT_NETWORK_ID === 1 
+            ? ['#4c2e56', '#ffe6e6']
+            : ['#2196f3', '#ffe6e6']
+
         // bind data to chart
         if (this.chart && this.data) {
             this.chart.data.labels = this.data.map((v) => v.version)
             this.chart.data.datasets = [
                 {
                     backgroundColor: chroma
-                        .scale(['#4c2e56', '#ffe6e6'])
+                        .scale(colorStops)
                         .colors(this.data.length),
                     data: this.data.map((v) => v[this.metric]) as number[],
                 },

@@ -15,6 +15,7 @@ import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import Chart from 'chart.js'
 import chroma from 'chroma-js'
 import { IVersion } from './Metadata.vue'
+import { DEFAULT_NETWORK_ID } from '@/store/modules/network/network'
 
 @Component({
     components: {},
@@ -62,16 +63,19 @@ export default class PeerCount extends Vue {
     }
 
     draw() {
+        const colorStops = DEFAULT_NETWORK_ID === 1 
+            ? ['#4c2e56', '#ffe6e6']
+            : ['#2196f3', '#ffe6e6']
+
         // bind data to chart
         if (this.chart && this.data) {
             this.chart.data.labels = this.data.map((v) => v.version)
             this.chart.data.datasets = [
                 {
                     backgroundColor: chroma
-                        .scale(['#4c2e56', '#ffe6e6'])
+                        .scale(colorStops)
                         .colors(this.data.length),
                     data: this.data.map((v) => v[this.metric]) as number[],
-                    barThickness: 20,
                 },
             ]
         }
