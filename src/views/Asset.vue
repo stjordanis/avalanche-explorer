@@ -204,7 +204,7 @@ export default class AssetPage extends Vue {
             offset: this.offset,
             limit: this.limit,
         }).then((res) => {
-            debugger
+            // debugger
             this.txloading = false
             this.transactions = res.data.transactions
         })
