@@ -17,6 +17,8 @@ import {
 } from '@/js/IAsset'
 import { X_CHAIN_ID } from '@/store/modules/platform/platform'
 import { ITransaction, ITransactionData } from '@/js/ITransaction'
+import { ITransactionPayload } from '@/services/transactions'
+import { getTransaction } from '@/services/transactions'
 
 Vue.use(Vuex)
 
@@ -35,7 +37,10 @@ export default new Vuex.Store({
         assetAggregatesLoaded: false,
         known_addresses: AddressDict,
         chainId: 'X',
+        transactions: [] as ITransaction[],
         recentTransactions: [] as ITransaction[],
+        assetTransactions: [] as ITransaction[],
+        addressTransactions: [] as ITransaction[],
         assetsSubsetForAggregations: {}, // TODO: remove eventually
         // this is a bandaid until the API precomputes aggregate data for assets
         // it holds a subset of the assets and checks if they have aggregation data
@@ -82,7 +87,14 @@ export default new Vuex.Store({
             /* ==========================================
                 Once we have assets, next get recent transactions
                ========================================== */
-            store.dispatch('getRecentTransactions', 10)
+            store.dispatch('getTransactions', {
+                mutation: 'addRecentTransactions',
+                id: null,
+                params: {
+                    sort: 'timestamp-desc',
+                    limit: 10,
+                },
+            })
 
             /* ==========================================
                 Then get asset aggregation data for assets appearing in recent Txs
@@ -100,11 +112,9 @@ export default new Vuex.Store({
             store.commit('addCollisionMap', collisionMap)
         },
 
-        async getRecentTransactions(store, txNum: number) {
-            const txRes = await api.get(
-                `/x/transactions?sort=timestamp-desc&limit=${txNum}`
-            )
-            store.commit('addRecentTransactions', txRes.data.transactions)
+        async getTransactions(store, payload: ITransactionPayload) {
+            const txRes = await getTransaction(payload.id, payload.params)
+            store.commit(payload.mutation, txRes.transactions)
         },
 
         // Adds an unknown asset id to the assets dictionary
@@ -209,8 +219,17 @@ export default new Vuex.Store({
         finishAggregatesLoading(state) {
             state.assetAggregatesLoaded = true
         },
+        addTransactions(state, transactions: ITransaction[]) {
+            state.transactions = transactions
+        },
         addRecentTransactions(state, transactions: ITransaction[]) {
             state.recentTransactions = transactions
+        },
+        addAssetTransactions(state, transactions: ITransaction[]) {
+            state.assetTransactions = transactions
+        },
+        addAddressTransactions(state, transactions: ITransaction[]) {
+            state.addressTransactions = transactions
         },
         updateAssetWithAggregationData(state, assetID: string) {
             //@ts-ignore
