@@ -18,6 +18,8 @@ export interface ITransactionParams {
     sort?: string
     offset?: number
     limit?: number
+    startTime?: number
+    endTime?: number
 }
 
 /**
